@@ -23,8 +23,13 @@ def index(request):
         list = list['list']
         newlist = list.replace(' ', '')
         newlist = newlist.split(',')
+        print(newlist)
+        for i in len(newlist):
+            newlist[i] = int(newlist[i])
+        print(newlist)
     context = {'list': newlist, 'form': form}
     return render(request, 'listvalid/index.html', context)
+
 
 def save(request):
     if request.method == 'POST':
@@ -32,4 +37,3 @@ def save(request):
         if form.is_valid():
             form.save()
     return redirect('home')
-    
